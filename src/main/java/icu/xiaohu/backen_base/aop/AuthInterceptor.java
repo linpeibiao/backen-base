@@ -3,8 +3,8 @@ package icu.xiaohu.backen_base.aop;
 
 import icu.xiaohu.backen_base.anotation.AuthCheck;
 import icu.xiaohu.backen_base.constant.UserRole;
+import icu.xiaohu.backen_base.entity.User;
 import icu.xiaohu.backen_base.exception.BusinessException;
-import icu.xiaohu.backen_base.model.domain.User;
 import icu.xiaohu.backen_base.model.result.ResultCode;
 import icu.xiaohu.backen_base.util.UserHolder;
 import org.aspectj.lang.ProceedingJoinPoint;

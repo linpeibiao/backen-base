@@ -2,8 +2,8 @@ package icu.xiaohu.backen_base.intercepter;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import icu.xiaohu.backen_base.entity.User;
 import icu.xiaohu.backen_base.exception.BusinessException;
-import icu.xiaohu.backen_base.model.domain.User;
 import icu.xiaohu.backen_base.model.result.ResultCode;
 import icu.xiaohu.backen_base.util.UserHolder;
 import lombok.extern.slf4j.Slf4j;

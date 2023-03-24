@@ -1,5 +1,6 @@
 package icu.xiaohu.backen_base.util;
 
+import icu.xiaohu.backen_base.entity.User;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -9,12 +10,12 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class UserHolder<T> {
-    private static final ThreadLocal<Object> tl = new ThreadLocal<>();
-    public static void save(Object user){
+    private static final ThreadLocal<User> tl = new ThreadLocal<>();
+    public static void save(User user){
         log.info(Thread.currentThread().getName() + "保存登陆用户信息");
         tl.set(user);
     }
-    public static Object get(){
+    public static User get(){
         log.info(Thread.currentThread().getName() + "获取登陆用户信息");
         return tl.get();
     }

@@ -9,6 +9,8 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+
+import icu.xiaohu.backen_base.constant.UserRole;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -64,8 +66,11 @@ public class User implements Serializable {
     @ApiModelProperty(value = "用户角色ID")
     private Long roleId;
 
-    @ApiModelProperty(value = "角色名称")
-    private String roleName;
+    /**
+     * 角色名称
+     */
+    @TableField(value = "role_name")
+    private UserRole roleName;
 
     @ApiModelProperty(value = "备用字段1")
     private String backup1;
