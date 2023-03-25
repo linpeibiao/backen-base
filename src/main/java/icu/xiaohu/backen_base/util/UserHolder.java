@@ -1,6 +1,6 @@
 package icu.xiaohu.backen_base.util;
 
-import icu.xiaohu.backen_base.entity.User;
+import icu.xiaohu.backen_base.model.entity.User;
 import lombok.extern.slf4j.Slf4j;
 
 /**

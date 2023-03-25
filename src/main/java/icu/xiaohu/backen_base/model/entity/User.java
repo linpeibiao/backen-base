@@ -1,4 +1,4 @@
-package icu.xiaohu.backen_base.entity;
+package icu.xiaohu.backen_base.model.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -61,7 +61,7 @@ public class User implements Serializable {
     private String realName;
 
     @ApiModelProperty(value = "用户状态 0-正常，1-禁用")
-    private Boolean status;
+    private Integer status;
 
     @ApiModelProperty(value = "用户角色ID")
     private Long roleId;

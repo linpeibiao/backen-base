@@ -1,6 +1,6 @@
 package icu.xiaohu.backen_base.mapper;
 
-import icu.xiaohu.backen_base.entity.User;
+import icu.xiaohu.backen_base.model.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
