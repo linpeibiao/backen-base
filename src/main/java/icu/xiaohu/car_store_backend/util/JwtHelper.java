@@ -1,4 +1,4 @@
-package icu.xiaohu.backen_base.util;
+package icu.xiaohu.car_store_backend.util;
 
 import io.jsonwebtoken.*;
 import org.springframework.util.StringUtils;

@@ -1,6 +1,6 @@
-package icu.xiaohu.backen_base.config;
+package icu.xiaohu.car_store_backend.config;
 
-import icu.xiaohu.backen_base.intercepter.LoginInterceptor;
+import icu.xiaohu.car_store_backend.intercepter.LoginInterceptor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

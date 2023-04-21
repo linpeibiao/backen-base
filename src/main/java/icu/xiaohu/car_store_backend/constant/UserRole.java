@@ -1,4 +1,4 @@
-package icu.xiaohu.backen_base.constant;
+package icu.xiaohu.car_store_backend.constant;
 
 import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.fasterxml.jackson.annotation.JsonValue;

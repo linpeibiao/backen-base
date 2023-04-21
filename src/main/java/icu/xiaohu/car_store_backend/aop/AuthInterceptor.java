@@ -1,12 +1,12 @@
-package icu.xiaohu.backen_base.aop;
+package icu.xiaohu.car_store_backend.aop;
 
 
-import icu.xiaohu.backen_base.anotation.AuthCheck;
-import icu.xiaohu.backen_base.constant.UserRole;
-import icu.xiaohu.backen_base.model.entity.User;
-import icu.xiaohu.backen_base.exception.BusinessException;
-import icu.xiaohu.backen_base.model.result.ResultCode;
-import icu.xiaohu.backen_base.util.UserHolder;
+import icu.xiaohu.car_store_backend.anotation.AuthCheck;
+import icu.xiaohu.car_store_backend.constant.UserRole;
+import icu.xiaohu.car_store_backend.model.entity.User;
+import icu.xiaohu.car_store_backend.exception.BusinessException;
+import icu.xiaohu.car_store_backend.model.result.ResultCode;
+import icu.xiaohu.car_store_backend.util.UserHolder;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

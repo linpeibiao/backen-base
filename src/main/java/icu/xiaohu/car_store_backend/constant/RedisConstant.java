@@ -1,4 +1,4 @@
-package icu.xiaohu.backen_base.constant;
+package icu.xiaohu.car_store_backend.constant;
 
 /**
  * @author xiaohu

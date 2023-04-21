@@ -1,6 +1,6 @@
-package icu.xiaohu.backen_base.util;
+package icu.xiaohu.car_store_backend.util;
 
-import icu.xiaohu.backen_base.model.entity.User;
+import icu.xiaohu.car_store_backend.model.entity.User;
 import lombok.extern.slf4j.Slf4j;
 
 /**

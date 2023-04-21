@@ -1,21 +1,21 @@
-package icu.xiaohu.backen_base.service.impl;
+package icu.xiaohu.car_store_backend.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
 import cn.hutool.core.util.RandomUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import icu.xiaohu.backen_base.constant.UserRole;
-import icu.xiaohu.backen_base.exception.BusinessException;
-import icu.xiaohu.backen_base.mapper.UserMapper;
-import icu.xiaohu.backen_base.model.dto.UserDto;
-import icu.xiaohu.backen_base.model.entity.User;
-import icu.xiaohu.backen_base.model.result.ResultCode;
-import icu.xiaohu.backen_base.model.vo.LoginUser;
-import icu.xiaohu.backen_base.service.UserService;
-import icu.xiaohu.backen_base.util.CodeGenerator;
-import icu.xiaohu.backen_base.util.JwtHelper;
-import icu.xiaohu.backen_base.util.UserHolder;
+import icu.xiaohu.car_store_backend.constant.UserRole;
+import icu.xiaohu.car_store_backend.exception.BusinessException;
+import icu.xiaohu.car_store_backend.mapper.UserMapper;
+import icu.xiaohu.car_store_backend.model.dto.UserDto;
+import icu.xiaohu.car_store_backend.model.entity.User;
+import icu.xiaohu.car_store_backend.model.result.ResultCode;
+import icu.xiaohu.car_store_backend.model.vo.LoginUser;
+import icu.xiaohu.car_store_backend.service.UserService;
+import icu.xiaohu.car_store_backend.util.CodeGenerator;
+import icu.xiaohu.car_store_backend.util.JwtHelper;
+import icu.xiaohu.car_store_backend.util.UserHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import static icu.xiaohu.backen_base.constant.RedisConstant.*;
+import static icu.xiaohu.car_store_backend.constant.RedisConstant.*;
 
 /**
 * @author xiaohu

@@ -1,12 +1,12 @@
-package icu.xiaohu.backen_base.controller;
+package icu.xiaohu.car_store_backend.controller;
 
 
-import icu.xiaohu.backen_base.model.dto.UserDto;
-import icu.xiaohu.backen_base.model.entity.User;
-import icu.xiaohu.backen_base.model.result.Result;
+import icu.xiaohu.car_store_backend.model.dto.UserDto;
+import icu.xiaohu.car_store_backend.model.entity.User;
+import icu.xiaohu.car_store_backend.model.result.Result;
 
-import icu.xiaohu.backen_base.model.vo.LoginUser;
-import icu.xiaohu.backen_base.service.UserService;
+import icu.xiaohu.car_store_backend.model.vo.LoginUser;
+import icu.xiaohu.car_store_backend.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;

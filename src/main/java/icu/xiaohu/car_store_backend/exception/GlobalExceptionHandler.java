@@ -1,6 +1,6 @@
-package icu.xiaohu.backen_base.exception;
+package icu.xiaohu.car_store_backend.exception;
 
-import icu.xiaohu.backen_base.model.result.Result;
+import icu.xiaohu.car_store_backend.model.result.Result;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

@@ -1,6 +1,6 @@
-package icu.xiaohu.backen_base.model.dto;
+package icu.xiaohu.car_store_backend.model.dto;
 
-import icu.xiaohu.backen_base.constant.UserRole;
+import icu.xiaohu.car_store_backend.constant.UserRole;
 import lombok.Data;
 
 /**

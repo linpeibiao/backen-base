@@ -1,4 +1,4 @@
-package icu.xiaohu.backen_base.config;
+package icu.xiaohu.car_store_backend.config;
 
 import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import org.springframework.context.annotation.Bean;

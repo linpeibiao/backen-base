@@ -1,6 +1,6 @@
-package icu.xiaohu.backen_base.mapper;
+package icu.xiaohu.car_store_backend.mapper;
 
-import icu.xiaohu.backen_base.model.entity.User;
+import icu.xiaohu.car_store_backend.model.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

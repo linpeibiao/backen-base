@@ -1,4 +1,4 @@
-package icu.xiaohu.backen_base.model.result;
+package icu.xiaohu.car_store_backend.model.result;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

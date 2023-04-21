@@ -1,6 +1,6 @@
-package icu.xiaohu.backen_base.exception;
+package icu.xiaohu.car_store_backend.exception;
 
-import icu.xiaohu.backen_base.model.result.ResultCode;
+import icu.xiaohu.car_store_backend.model.result.ResultCode;
 
 /**
  * @author xiaohu

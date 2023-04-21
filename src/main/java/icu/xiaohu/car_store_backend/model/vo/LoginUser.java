@@ -1,4 +1,4 @@
-package icu.xiaohu.backen_base.model.vo;
+package icu.xiaohu.car_store_backend.model.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

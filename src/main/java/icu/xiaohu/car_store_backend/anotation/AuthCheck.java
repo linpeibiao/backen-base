@@ -1,6 +1,6 @@
-package icu.xiaohu.backen_base.anotation;
+package icu.xiaohu.car_store_backend.anotation;
 
-import icu.xiaohu.backen_base.constant.UserRole;
+import icu.xiaohu.car_store_backend.constant.UserRole;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

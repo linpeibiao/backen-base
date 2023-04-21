@@ -1,4 +1,4 @@
-package icu.xiaohu.backen_base.config;
+package icu.xiaohu.car_store_backend.config;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;

@@ -1,11 +1,11 @@
-package icu.xiaohu.backen_base.intercepter;
+package icu.xiaohu.car_store_backend.intercepter;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import icu.xiaohu.backen_base.model.entity.User;
-import icu.xiaohu.backen_base.exception.BusinessException;
-import icu.xiaohu.backen_base.model.result.ResultCode;
-import icu.xiaohu.backen_base.util.UserHolder;
+import icu.xiaohu.car_store_backend.model.entity.User;
+import icu.xiaohu.car_store_backend.exception.BusinessException;
+import icu.xiaohu.car_store_backend.model.result.ResultCode;
+import icu.xiaohu.car_store_backend.util.UserHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
-import static icu.xiaohu.backen_base.constant.RedisConstant.LOGIN_USER_KEY;
+import static icu.xiaohu.car_store_backend.constant.RedisConstant.LOGIN_USER_KEY;
 
 
 /**

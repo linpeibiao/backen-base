@@ -1,9 +1,9 @@
-package icu.xiaohu.backen_base.service;
+package icu.xiaohu.car_store_backend.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import icu.xiaohu.backen_base.model.dto.UserDto;
-import icu.xiaohu.backen_base.model.entity.User;
-import icu.xiaohu.backen_base.model.vo.LoginUser;
+import icu.xiaohu.car_store_backend.model.dto.UserDto;
+import icu.xiaohu.car_store_backend.model.entity.User;
+import icu.xiaohu.car_store_backend.model.vo.LoginUser;
 
 /**
 * @author xiaohu

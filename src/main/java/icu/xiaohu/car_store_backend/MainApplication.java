@@ -1,4 +1,4 @@
-package icu.xiaohu.backen_base;
+package icu.xiaohu.car_store_backend;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

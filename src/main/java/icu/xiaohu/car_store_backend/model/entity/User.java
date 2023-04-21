@@ -1,4 +1,4 @@
-package icu.xiaohu.backen_base.model.entity;
+package icu.xiaohu.car_store_backend.model.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -10,7 +10,7 @@ import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
 
-import icu.xiaohu.backen_base.constant.UserRole;
+import icu.xiaohu.car_store_backend.constant.UserRole;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
