@@ -11,6 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest()
 public class MainApplicationTest {
     public static void main(String[] args) {
-        SpringApplication.run(icu.xiaohu.car_store_backend.MainApplication.class, args);
+        SpringApplication.run(icu.xiaohu.backend_base.MainApplication.class, args);
     }
 }
