@@ -32,8 +32,11 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         log.info("登录拦截器被执行");
+        if ("OPTIONS".equals(request.getMethod())) {
+            return true;
+        }
         String url = request.getRequestURI();
-        if (url.contains("login") || url.contains("sendCode")){
+        if (url.contains("login") || url.contains("sendCode") || url.contains("register")){
             return true;
         }
         // 1.判断是否需要拦截（ThreadLocal中是否有用户）
