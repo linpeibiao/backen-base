@@ -5,7 +5,7 @@
 ## 技术栈
 1. 数据库: mysql 8.0.24
 2. java8 
-3. ssm，mp, springboot 
+3. mp, springboot 
 4. rabbit MQ, redis
 5. swagger, knife4j, junit
 6. hutools, jwt, commons-langs
