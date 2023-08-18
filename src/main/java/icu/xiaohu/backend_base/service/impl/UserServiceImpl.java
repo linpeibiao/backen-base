@@ -23,6 +23,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -54,6 +55,24 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
+
+    @Override
+    public User curUser(HttpServletRequest request) {
+        String token = request.getHeader("token");
+        if (StringUtils.isBlank(token)){
+            throw new BusinessException(ResultCode.NOT_LOGIN, "未登录");
+        }
+        String tokenKey = LOGIN_USER_KEY + token;
+        // 先从 redis 中拿到登录信息，若数据为空，返回false
+        Map<Object, Object> userMap = stringRedisTemplate.opsForHash().entries(tokenKey);
+        // 判断 userMap
+        if (userMap.isEmpty()){
+            throw new BusinessException(ResultCode.NOT_LOGIN, "未登录");
+        }
+        // 将 map 转换成 User 实体,枚举值无法转换成整形，要忽略掉错误
+        return BeanUtil.fillBeanWithMap(userMap, new User(), true);
+    }
+
     @Override
     public String login(LoginUser loginUser) {
         // 1校验用户post请求中的手机号验证码信息是否为空
@@ -80,6 +99,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         // 5判断用户账户状态
         if (user.getStatus() == 1){
             throw new BusinessException(ResultCode.FAIL, "账户异常，无法登录");
+        }
+
+        if (UserHolder.get(user.getAccount()) != null){
+            return UserHolder.getToken(user.getAccount());
         }
         return loginCommonWork(user, user.getPhone());
     }
@@ -136,7 +159,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             throw new BusinessException(ResultCode.PARAMS_ERROR, "账号密码不能为空");
         }
         // 判断当前用户 判断用户是否存在
-        User curUser = UserHolder.get();
+        User curUser = UserHolder.get(account);
         if (curUser == null || !account.equals(curUser.getAccount())){
             throw new BusinessException(ResultCode.NO_AUTH);
         }
@@ -159,10 +182,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         if (StringUtils.isAnyEmpty(account, password)){
             throw new BusinessException(ResultCode.PARAMS_ERROR);
         }
-        // TODO 应该先判断是否已经登录
 
+        User user = null;
         // 3. 查询账户
-        User user = getOne(new QueryWrapper<User>().eq("account", account));
+        user = getOne(new QueryWrapper<User>().eq("account", account));
         if (user == null){
             throw new BusinessException(ResultCode.PARAMS_ERROR, "该账号不存在");
         }
@@ -176,6 +199,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         // 判断是否匹配
         if (!encryptPassword.equals(user.getPassword())){
             throw new BusinessException(ResultCode.PARAMS_ERROR, "密码输入错误");
+        }
+
+
+        // 判断是否已经登录
+        if (UserHolder.get(account) != null){
+            return UserHolder.getToken(account);
         }
         // 6. 生成token,保存在redis,并设置有效期
         return loginCommonWork(user, user.getAccount());
@@ -240,6 +269,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         stringRedisTemplate.opsForHash().putAll(tokenKey, userMap);
         // 6.3设置有效期
         stringRedisTemplate.expire(tokenKey, LOGIN_USER_TTL, TimeUnit.MINUTES);
+        // 7 保存 user 登录状态
+        UserHolder.save(user.getAccount(), token);
         // 返回token
         return token;
     }
@@ -257,6 +288,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         User user = getOne(new QueryWrapper<User>().eq("account", account));
         return user != null;
     }
+
 
     /**
      * 创建新用户

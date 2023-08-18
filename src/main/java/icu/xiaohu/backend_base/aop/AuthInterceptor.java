@@ -6,10 +6,12 @@ import icu.xiaohu.backend_base.constant.UserRole;
 import icu.xiaohu.backend_base.model.entity.User;
 import icu.xiaohu.backend_base.exception.BusinessException;
 import icu.xiaohu.backend_base.model.result.ResultCode;
+import icu.xiaohu.backend_base.service.UserService;
 import icu.xiaohu.backend_base.util.UserHolder;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -28,6 +30,9 @@ import java.util.stream.Collectors;
 @Aspect
 @Component
 public class AuthInterceptor {
+
+    @Autowired
+    private UserService userService;
     /**
      * 执行拦截
      *
@@ -42,7 +47,7 @@ public class AuthInterceptor {
         RequestAttributes requestAttributes = RequestContextHolder.currentRequestAttributes();
         HttpServletRequest request = ((ServletRequestAttributes) requestAttributes).getRequest();
         // 当前登录用户
-        User user = UserHolder.get();
+        User user = userService.curUser(request);
         if (user == null){
             throw new BusinessException(ResultCode.NOT_LOGIN, "未登录");
         }

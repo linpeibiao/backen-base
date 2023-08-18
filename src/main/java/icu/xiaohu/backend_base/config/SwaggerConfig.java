@@ -21,21 +21,21 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 @EnableSwagger2WebMvc
 @EnableKnife4j
 public class SwaggerConfig {
-    @Bean(value = "资源管理 Api")
+    @Bean(value = "base Api")
     @Order(value = 1)
     public Docket groupRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(groupApiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("icu.xiaohu.backen_base.controller"))
+                .apis(RequestHandlerSelectors.basePackage("icu.xiaohu.backend_base.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
 
     private ApiInfo groupApiInfo(){
         return new ApiInfoBuilder()
-                .title("资源管理 Apis")
-                .description("资源管理服务在线调试文档")
+                .title("base管理 Apis")
+                .description("base管理服务在线调试文档")
                 .version("1.0")
                 .build();
     }
