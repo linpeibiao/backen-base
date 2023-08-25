@@ -15,6 +15,7 @@ import icu.xiaohu.backend_base.model.vo.LoginUser;
 import icu.xiaohu.backend_base.service.UserService;
 import icu.xiaohu.backend_base.util.CodeGenerator;
 import icu.xiaohu.backend_base.util.JwtHelper;
+import icu.xiaohu.backend_base.util.TokenHolder;
 import icu.xiaohu.backend_base.util.UserHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -26,6 +27,7 @@ import org.springframework.util.DigestUtils;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import static icu.xiaohu.backend_base.constant.RedisConstant.*;
@@ -62,9 +64,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         if (StringUtils.isBlank(token)){
             throw new BusinessException(ResultCode.NOT_LOGIN, "未登录");
         }
-        String tokenKey = LOGIN_USER_KEY + token;
         // 先从 redis 中拿到登录信息，若数据为空，返回false
-        Map<Object, Object> userMap = stringRedisTemplate.opsForHash().entries(tokenKey);
+        Map<Object, Object> userMap = stringRedisTemplate.opsForHash().entries(token);
         // 判断 userMap
         if (userMap.isEmpty()){
             throw new BusinessException(ResultCode.NOT_LOGIN, "未登录");
@@ -101,8 +102,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             throw new BusinessException(ResultCode.FAIL, "账户异常，无法登录");
         }
 
-        if (UserHolder.get(user.getAccount()) != null){
-            return UserHolder.getToken(user.getAccount());
+        if (isLogin(user.getAccount())){
+            return TokenHolder.getToken(user.getAccount());
         }
         return loginCommonWork(user, user.getPhone());
     }
@@ -159,7 +160,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             throw new BusinessException(ResultCode.PARAMS_ERROR, "账号密码不能为空");
         }
         // 判断当前用户 判断用户是否存在
-        User curUser = UserHolder.get(account);
+        User curUser = UserHolder.get();
         if (curUser == null || !account.equals(curUser.getAccount())){
             throw new BusinessException(ResultCode.NO_AUTH);
         }
@@ -203,8 +204,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
 
         // 判断是否已经登录
-        if (UserHolder.get(account) != null){
-            return UserHolder.getToken(account);
+        if (isLogin(account)){
+            return TokenHolder.getToken(account);
         }
         // 6. 生成token,保存在redis,并设置有效期
         return loginCommonWork(user, user.getAccount());
@@ -265,14 +266,30 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
                             return fieldValue;
                         }));
         // 6.2以hash的类型保存在redis
-        String tokenKey = LOGIN_USER_KEY + token;
+        String tokenKey = LOGIN_USER_KEY + user.getAccount() + ":" + token;
         stringRedisTemplate.opsForHash().putAll(tokenKey, userMap);
         // 6.3设置有效期
         stringRedisTemplate.expire(tokenKey, LOGIN_USER_TTL, TimeUnit.MINUTES);
         // 7 保存 user 登录状态
-        UserHolder.save(user.getAccount(), token);
+        UserHolder.save(user);
+        // 8 保存 token
+        TokenHolder.setToken(user.getAccount(), tokenKey);
         // 返回token
-        return token;
+        return tokenKey;
+    }
+
+    /**
+     * 判断用户是否已经登陆
+     * @param account
+     * @return
+     */
+    public boolean isLogin(String account){
+        if (StringUtils.isBlank(account)) {
+            return false;
+        }
+        String prefix = LOGIN_USER_KEY + account + ":";
+        Set<String> keys = stringRedisTemplate.keys(prefix + "*");
+        return !keys.isEmpty();
     }
 
     /**

@@ -45,9 +45,8 @@ public class LoginInterceptor implements HandlerInterceptor {
             throw new BusinessException(ResultCode.NOT_LOGIN, "未登录");
         }
 
-        String tokenKey = LOGIN_USER_KEY + token;
         // 先从 redis 中拿到登录信息，若数据为空，返回false
-        Map<Object, Object> userMap = stringRedisTemplate.opsForHash().entries(tokenKey);
+        Map<Object, Object> userMap = stringRedisTemplate.opsForHash().entries(token);
         // 判断 userMap
         if (userMap.isEmpty()){
             throw new BusinessException(ResultCode.NOT_LOGIN, "未登录");
@@ -55,7 +54,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         // 将 map 转换成 User 实体
         User user = BeanUtil.fillBeanWithMap(userMap, new User(), false);
         // 将 USer 保存在 UserHolder
-        UserHolder.save(user.getAccount(), token);
+        UserHolder.save(user);
         // 有用户，则放行
         log.info("存在登录用户");
         return true;
